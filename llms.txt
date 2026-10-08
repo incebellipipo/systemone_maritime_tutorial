@@ -1,0 +1,24 @@
+# System One for Marine Autonomy
+
+> A short tutorial on System One models: AI decision models that take content (state) plus typed questions (Choice, Score, Noul) and return typed answers with probabilities instead of generated text. The case study is collision avoidance for an autonomous surface vessel. The tutorial is model-agnostic and uses the shared `POST /v1/systemone` request format.
+
+Key points:
+
+- Code computes the geometry (CPA, TCPA, bearing, aspect). The model sees named buckets ("inside own ship's safety domain"), never raw numbers.
+- The model answers narrow questions: encounter type, collision risk, and yes/no checks on the context. It is a decision component, not the navigator.
+- Code gates every answer on confidence and COLREGs rules, then acts, falls back to rule-based behaviour, or alerts the remote operator.
+- This is decision support, not a certified collision-avoidance system. All model outputs shown are illustrative; all thresholds are placeholders.
+
+## Docs
+
+- [Index](./): overview, where the model sits in the autonomy loop, contents
+- [0. What is a System One model?](00-introduction/): key facts, history from Jev's launch in September 2026, and the model landscape
+- [1. System One vs LLMs](01-system-one-vs-llms/): how the responses differ, and when to use each
+- [2. The request format](02-request-format/): state, questions, answers, and the score and confidence formulas
+- [3. Building a request step by step](03-building-a-request/): eight steps from one yes/no question to a full encounter request, with the complete request after each step
+- [4. Encoding state](04-encoding-state/): geometry formulas, a worked example, and the rules for turning numbers into words
+- [5. Writing clear requests](05-writing-clear-requests/): eight before-and-after rewrites, and how to check that a rewrite helped
+- [6. Using the answers](06-using-the-answers/): the confidence gate, ranking several targets, and a worked encounter
+- [7. Limitations and safety](07-limitations/): model limits, format and setting limits, simplifications
+- [8. Building the same request for an LLM](08-building-an-llm-request/): page 3 repeated with a chat LLM and JSON-schema output, for comparison
+

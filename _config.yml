@@ -1,0 +1,59 @@
+title: System One for Marine Autonomy
+description: "A short tutorial on System One decision models, with ship collision avoidance as the case study"
+author: Emir Cem Gezer
+
+# GitHub Pages serves a project site under the repository name. The deploy
+# workflow passes the right value, so this only matters for local previews.
+baseurl: /systemone_for_marine_autonomy
+
+# Optional: a "Home" link in the menu, e.g. to your own website
+home_url:
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  parse_block_html: false # <details markdown="1"> opts in per block
+  math_engine: mathjax
+
+sass:
+  sass_dir: assets/css/_sass
+  style: compressed
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-optional-front-matter
+  - jekyll-relative-links
+  - jekyll-titles-from-headings
+
+# The docs have no front matter, so they still read cleanly on GitHub
+optional_front_matter:
+  remove_originals: true
+relative_links:
+  enabled: true
+titles_from_headings:
+  enabled: true
+  strip_title: false
+
+defaults:
+  - scope:
+      path: "docs"
+    values:
+      layout: doc
+      permalink: /:basename/
+  - scope:
+      path: "docs/index.md"
+    values:
+      permalink: /
+
+exclude:
+  - README.md
+  - LICENSE.md
+  - Gemfile
+  - Gemfile.lock
+  - docker-compose.yml
+  - vendor/
+  - src/
+  - notebooks/
+  - .github/
