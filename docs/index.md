@@ -26,6 +26,6 @@ flowchart LR
 5. [Writing clear requests](05-writing-clear-requests.md): before-and-after rewrites
 6. [Using the answers](06-using-the-answers.md): gating, scoring, and a worked encounter
 7. [Limitations and safety](07-limitations.md)
-8. [Building the same request for an LLM](08-building-an-llm-request.md): page 3 again, with a chat LLM
+8. [Building the same request for an LLM](08-building-an-llm-request.md): Similar to [Building a request](03-building-a-request.md) but with an LLM
 
 All model outputs shown are **illustrative**. All thresholds are placeholders.
