@@ -1,0 +1,44 @@
+<!-- Add a Copy button to every code block (mermaid diagrams excluded) -->
+<script>
+    (function () {
+        document.querySelectorAll("article pre").forEach(function (pre) {
+            if (pre.closest("div.language-mermaid") || pre.querySelector("code.language-mermaid")) return;
+            var wrap = document.createElement("div");
+            wrap.className = "code-block";
+            pre.parentNode.insertBefore(wrap, pre);
+            wrap.appendChild(pre);
+
+            var button = document.createElement("button");
+            button.type = "button";
+            button.className = "copy-code";
+            button.textContent = "Copy";
+            button.setAttribute("aria-label", "Copy code to clipboard");
+            wrap.appendChild(button);
+
+            function done(label) {
+                button.textContent = label;
+                setTimeout(function () { button.textContent = "Copy"; }, 1500);
+            }
+            function fallback(text) {
+                var area = document.createElement("textarea");
+                area.value = text;
+                area.style.position = "fixed";
+                area.style.opacity = "0";
+                document.body.appendChild(area);
+                area.select();
+                var ok = false;
+                try { ok = document.execCommand("copy"); } catch (e) {}
+                document.body.removeChild(area);
+                done(ok ? "Copied" : "Failed");
+            }
+            button.addEventListener("click", function () {
+                var text = pre.innerText.replace(/\n$/, "");
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(function () { done("Copied"); }, function () { fallback(text); });
+                } else {
+                    fallback(text);
+                }
+            });
+        });
+    })();
+</script>
